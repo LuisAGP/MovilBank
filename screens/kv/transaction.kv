@@ -1,0 +1,137 @@
+#:import rgba kivy.utils.get_color_from_hex
+#:import InfoCard components.py.info_card
+
+# Este componente fue creado desde el codigo kv.
+# Es similar a: class SeeAllButton(Button)
+# ----------------------------------------------
+# Este componente no se renderizará si no se
+# utiliza en el componente principal HomeScreen
+# y solo es utilizable en este archivo
+<SeeAllButton@Button>
+    text: ""
+    bold: True
+    color: rgba("#485e99")
+    font_size: dp(12)
+    size_hint: None, None
+    size: 70, 30
+    background_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: rgba("#dff5ff") if self.state == 'normal' else rgba("#e4e4e4")
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+
+
+# Componente creado desde home.py
+<ListItemTransaction>
+    text: ""
+    secondary_text: ""
+    secondary_font_style: 'Body2'
+    icon: 'incognito'
+    background_color: app.main_color
+    monto: ''
+
+    IconLeftWidget:
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: (1,1,1,1)
+        md_bg_color: root.background_color
+
+    # Componente creado desde home.py
+    TransactionAmount:
+        size_hint_x: None
+        adaptative_width: True
+        MDLabel:
+            text: root.monto
+
+
+
+# Este es el componente que se renderiza
+<TransactionScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.main_color
+
+        MDToolbar:
+            title: ""
+            left_action_items: [['chevron-left', lambda x: app.go_home()]]
+            right_action_items: [['bell']]
+            md_bg_color: app.main_color
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: (20)
+            adaptative_height: True
+
+            MDLabel:
+                text: "Tu Balance"
+                font_size: dp(18)
+                theme_text_color: "Custom"
+                text_color: rgba("#716ee5")
+                size_hint: None, None
+                -text_size: None, None
+                size: self.texture_size
+
+            MDLabel:
+                text: "$547,000.00"
+                font_size: dp(24)
+                theme_text_color: "Custom"
+                text_color: app.font_color
+                size_hint: None, None
+                -text_size: None, None
+                size: self.texture_size
+
+            MDGridLayout:
+                cols: 2
+                spacing: "10dp"
+                padding: (0, 15)
+
+                # Componente global creado en components/py/info_card.py
+                InfoCard:
+                    md_bg_color: rgba("#c4f2ff")
+                    source: 'assets/image/coin.png'
+                    amount: '$5,000'
+                    text: 'Gastos'
+                    text_color: rgba("#97c5d2")
+
+                InfoCard:
+                    md_bg_color: rgba("#ffe6d7")
+                    source: 'assets/image/ahorro.png'
+                    amount: '$15,000'
+                    text: 'Ahorros'
+                    text_color: rgba("#d1b8a8")
+
+        MDCard:
+            orientation: 'vertical'
+            elevation: 1
+            radius: (30,30,0,0)
+
+            MDRelativeLayout:
+                size_hint_y: None
+                height: "50dp"
+
+                MDLabel:
+                    text: 'Transacciones'
+                    font_size: dp(18)
+                    bold: True
+                    theme_text_color: "Custom"
+                    text_color: app.font_color_dark
+                    size_hint: None, None
+                    -text_size: None, None
+                    pos_hint: {'y': 0}
+                    pos_hint_x: None
+                    size: self.texture_size
+                    x: "30dp"
+
+                SeeAllButton:
+                    text: "Ver todo"
+                    pos_hint: {'y': 0}
+                    pos_hint_x: None
+                    x: root.width - 100
+
+            ScrollView:
+                size_hint_y: 1
+                MDList:
+                    id: lista_transacciones

@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Gasolina", 
+        "empresa": "PEMEX",
+        "icon": "car", 
+        "color": "#0cc4be",
+        "monto": "-$200"
+    },
+    {
+        "nombre": "Energía eléctrica", 
+        "empresa": "CFE",
+        "icon": "home", 
+        "color": "#3c4ac6",
+        "monto": "-$200"
+    },
+    {
+        "nombre": "Artículo", 
+        "empresa": "AMAZON",
+        "icon": "gift", 
+        "color": "#ff5851",
+        "monto": "-$2,500"
+    },
+    {
+        "nombre": "Compra", 
+        "empresa": "TIENDA",
+        "icon": "shopping", 
+        "color": "#0cc4be",
+        "monto": "-$300"
+    },
+    {
+        "nombre": "Deposito", 
+        "empresa": "OXXO",
+        "icon": "cash", 
+        "color": "#0c9e37",
+        "monto": "$5,000"
+    }
+]

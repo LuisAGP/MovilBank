@@ -1,0 +1,205 @@
+#:import rgba kivy.utils.get_color_from_hex
+#:import InfoCard components.py.info_card
+
+<SearchField@MDBoxLayout>:
+    text: ''
+    size_hint_y: None
+    height: "35dp"
+    hint_text: ""
+    canvas.before:
+        Color:
+            rgb: rgba('#eef1ff')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [5]
+
+    MDIconButton:
+        icon: "magnify"
+        pos_hint: {"center_y": .5}
+        theme_text_color: "Custom"
+        text_color: app.font_color_dark
+
+    TextInput:
+        hint_text: root.hint_text
+        font_size: '13dp'
+        background_normal: ''
+        background_color: (0,0,0,0)
+        pos_hint: {"center_y": .5}
+        size_hint: 1, 1
+        padding_y: self.height / 2 - (self.line_height / 2) * len(self._lines)
+
+<HomeScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: ""
+            left_action_items: [['menu']]
+            right_action_items: [['bell-outline']]
+            theme_text_color: "Custom"
+            specific_text_color: rgba("#7c89cc")
+            md_bg_color: (1,1,1,1)
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: (20, 0)
+            size_hint_y: None
+            height: "50dp"
+
+            MDLabel:
+                text: "Bienvenido"
+                bold: True
+                font_size: dp(18)
+                theme_text_color: "Custom"
+                text_color: rgba("#969cae")
+                size_hint: None, None
+                -text_size: None, None
+                size: self.texture_size
+
+            MDLabel:
+                text: "Luis GP"
+                font_size: dp(24)
+                bold: True
+                theme_text_color: "Custom"
+                text_color: app.font_color_dark
+                size_hint: None, None
+                -text_size: None, None
+                size: self.texture_size
+
+        MDBoxLayout:
+            padding: (25, 0)
+            size_hint_y: None
+            height: "60dp"
+
+            SearchField:
+                hint_text: "Buscar"
+
+        MDGridLayout:
+            size_hint_y: 1
+            cols: 2
+            spacing: (5)
+            padding: (15)
+
+            InfoCard:
+                md_bg_color: rgba("#00cf88")
+                source: 'assets/image/coin.png'
+                text: '7 items'
+                text_size: dp(9)
+                text_color: rgba("#ffffff")
+                amount: 'Transacciones'
+                amount_size: dp(12)
+                amount_color: rgba("#ffffff")
+                halign: 'left'
+                on_release:
+                    app.sm.transition.direction = 'left'
+                    app.sm.current = 'transactionscreen'
+
+            InfoCard:
+                md_bg_color: rgba("#ff5949")
+                source: 'assets/image/ahorro.png'
+                text: '4 items'
+                text_size: dp(9)
+                text_color: rgba("#ffffff")
+                amount: 'Ahorros'
+                amount_size: dp(12)
+                amount_color: rgba("#ffffff")
+                halign: 'left'
+                on_release:
+                    app.sm.transition.direction = 'left'
+                    app.sm.current = 'transactionscreen'
+
+            InfoCard:
+                md_bg_color: rgba("#18bcbd")
+                source: 'assets/image/estrella.png'
+                text: '6 items'
+                text_size: dp(9)
+                text_color: rgba("#ffffff")
+                amount: 'Sugerencias'
+                amount_size: dp(12)
+                amount_color: rgba("#ffffff")
+                halign: 'left'
+                on_release:
+                    app.sm.transition.direction = 'left'
+                    app.sm.current = 'transactionscreen'
+
+            InfoCard:
+                md_bg_color: rgba("#2f26d9")
+                source: 'assets/image/visa.png'
+                text: '6 items'
+                text_size: dp(9)
+                text_color: rgba("#ffffff")
+                amount: 'Credito'
+                amount_size: dp(12)
+                amount_color: rgba("#ffffff")
+                halign: 'left'
+                on_release:
+                    app.sm.transition.direction = 'left'
+                    app.sm.current = 'transactionscreen'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: (150)
+            padding: (20)
+
+            MDLabel:
+                text: "Selecciona categoría"
+                bold: True
+                font_size: dp(18)
+                theme_text_color: "Custom"
+                text_color: app.font_color_dark
+                size_hint: None, None
+                -text_size: None, None
+                size: self.texture_size
+
+            MDGridLayout:
+                cols: 2
+                padding: (0, 10)
+                spacing: (20)
+
+                MDCard:
+                    elevation: 1
+                    radius: (5)
+                    md_bg_color: rgba("#e2e2e2")
+                    padding: (5)
+
+                    MDRelativeLayout:
+                        MDIconButton:
+                            icon: 'bank'
+                            theme_text_color: "Custom"
+                            text_color: (1,1,1,1)
+                            md_bg_color: rgba("#5edfff")
+                            pos_hint: {'center_y': .5}
+                            user_font_size: dp(16)
+                        
+                        MDLabel:
+                            text: "Sucursales"
+                            font_size: dp(10)
+                            pos_hint_x: None
+                            x: "50dp"
+                            size_hint_x: .5
+                            pos_hint: {'center_y': .5}
+
+                MDCard:
+                    elevation: 1
+                    radius: (5)
+                    md_bg_color: rgba("#e2e2e2")
+                    padding: (5)
+                    
+                    MDRelativeLayout:
+                        MDIconButton:
+                            icon: 'credit-card'
+                            theme_text_color: "Custom"
+                            text_color: (1,1,1,1)
+                            md_bg_color: rgba("#3d64ff")
+                            pos_hint: {'center_y': .5}
+                            user_font_size: dp(16)
+
+                        MDLabel:
+                            text: "Hacer un pago"
+                            font_size: dp(10)
+                            pos_hint_x: None
+                            x: "50dp"
+                            size_hint_x: .5
+                            pos_hint: {'center_y': .5}
